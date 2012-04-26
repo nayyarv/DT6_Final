@@ -1,0 +1,17 @@
+ public void rotate(){
+        if(atNotch()){
+            nextComponent.rotate();
+            //Simple turn at notch
+        } else if (justpastNotch()&&nextComponent.atNotch()&&justRotated){
+            //i.e just past notch, next component is at it's notch, and it's just turned before
+            nextComponent.rotate();
+            //Double Stepping
+        } else {
+            //none of the next components are being rotated
+            nextComponent.notRotated();
+        }
+
+        rotorWiring.rotateOnce();
+
+        justRotated=true; //simplest way to check this is the fast rotor
+    }

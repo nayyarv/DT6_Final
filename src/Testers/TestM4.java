@@ -1,0 +1,102 @@
+package Testers;
+import Enigma.*;
+
+/**
+ * File Name:
+ * Creator: Varun Nayyar
+ * Date: 16/04/12
+ * Desc:
+ */
+public class TestM4 {
+
+    public static void main(String[] args) {
+        runTest();
+    }
+
+    public static void runTest() {
+        EnigmaMachine m4 = EnigmaBuilder.constructM4("6664C");
+
+
+
+        m4.setIndicators("AAAAA");
+
+        String plain = "SDKLFJSLDFJKSLDFKJSDFLKJELKSJDFLKSJDLKSDJFLKJSDF";
+        String encrypt = "AEOVXIPCPVZUDSMZCIRRPJCDOYSGATOYBBVSCIBGRKMOSOPU";
+
+        assert (m4.encipher(plain).equals(encrypt));
+        m4.setIndicators("AAAAA");
+        assert (m4.encipher(encrypt).equals (plain));
+
+        /**************************************************************/
+
+        m4 = EnigmaBuilder.constructM4("1111A");
+
+        m4.setIndicators("AAAZA");
+        //System.out.println("Indicators are: "+m4.getCurrentIndicators());
+        //System.out.println(m4.encipher("A"));
+        m4.setIndicators("AAAZA");
+        assert (m4.encipher("A").equals("H"));
+
+        /**************************************************************/
+
+        m4 = EnigmaBuilder.constructM4("4142A");
+        m4.setIndicators("AFAFA");
+        plain = "JJJJJFEIFKSIIQZZFKEIJNVVCOOW";
+        encrypt = "OVGGKNRQKXGTZSJKUILBXUCXRZLU";
+        assert (m4.encipher(plain).equals(encrypt));
+
+
+        /**************************************************************/
+
+        m4 = EnigmaBuilder.constructM4("2178B");
+        m4.setIndicators("COMPP");
+        plain = "ENIGMAENGMAENIGMAENIGMA";
+        encrypt = "SMCRAHCZHJPNAMVAZWWFKBW";
+        String ans = m4.encipher(plain);
+        System.out.println("The output is: "+ans);
+        System.out.println("Indicators are: "+m4.getCurrentIndicators());
+
+//        System.exit(0);
+        assert (ans.equals(encrypt));
+
+        /**************************************************************/
+
+        m4 = EnigmaBuilder.constructM4("1182C");
+
+        plain = "OURFORMOFGOVERNMENTDOESNOTENTERINTORIVALRYWITHTHEINSTITUTIONS" +
+                "OFOTHERSOURGOVERNMENTDOESNOTCOPYOURNEIGHBORSBUTISANEXAMPLE" +
+                "TOTHEMITISTRUETHATWEARECALLEDADEMOCRACYFORTHEADMINISTRATION" +
+                "ISINTHEHANDSOFTHEMANYANDNOTOFTHEFEWBUTWHILETHEREEXISTSEQUAL" +
+                "JUSTICETOALLANDALIKEINTHEIRPRIVATEDISPUTESTHECLAIMOFEXCELLENCE" +
+                "ISALSORECOGNIZEDANDWHENACITIZENISINANYWAYDISTINGUISHEDHEISPREFERRED" +
+                "TOTHEPUBLICSERVICENOTASAMATTEROFPRIVILEGEBUTASTHEREWARDOFMERIT" +
+                "NEITHERISPOVERTYANOBSTACLEBUTAMANMAYBENEFITHISCOUNTRYWHATEVER" +
+                "THEOBSCURITYOFHISCONDITIONTHEREISNOEXCLUSIVENESSINOURPUBLICLIFE" +
+                "ANDINOURPRIVATEBUSINESSWEARENOTSUSPICIOUSOFONEANOTHERNORANGRYWITH" +
+                "OURNEIGHBORIFHEDOESWHATHELIKESWEDONOTPUTONSOURLOOKSATHIMWHICHTHOUGH" +
+                "HARMLESSARENOTPLEASANTWHILEWEARETHUSUNCONSTRAINEDINOURPRIVATEBUSINESS" +
+                "ASPIRITOFREVERENCEPERVADESOURPUBLICACTSWEAREPREVENTEDFROMDOINGWRONG" +
+                "BYRESPECTFORTHEAUTHORITIESANDFORTHELAWSHAVINGAPARTICULARREGARDTOTHOSE" +
+                "WHICHAREORDAINEDFORTHEPROTECTIONOFTHEINJUREDASWELLASTHOSEUNWRITTENLAWS" +
+                "WHICHBRINGUPONTHETRANSGRESSOROFTHEMTHEREPROBATIONOFTHEGENERALSENTIMENT";
+
+
+        encrypt = "BAZBMJXZYJQDVFIZUVNJMLEOAEQGWJHVBWIABNIYDNNSOQCJMVDZHQLQKZQSPKVGFLXTOEBHDEFJXBBIWUZCMTBHWPVGZGCXEXNQFGMPACXGURVXYVTXGYKEQMXIIVPQWP" +
+                "TQLUSJHEDYSQXVMZLBFHFQRUJRJSMIVDEUCLBPWOOXOFYZDQYVVYGMTCNPEVEIQUPQOAIJVSYWBYPQDPJUGKGVTRXNQMZREMXKCZQUGSBECCBIMTXTKQTPERCIWUKRZXJU" +
+                "OBUCRIYNMSXADNDPJYESLJVHEWQFQNRLSWQMCEGBACQMDKWVPIEXNKEPFSPOGDNIVSUHGSAWAXVPKLHTSZDXQVCGNVNIHEZOUTXZWMACTIKQARRDNIUHMMIBBEPIAKUTOI" +
+                "XSFJLLFGXOAHHPQAJSDWCESPGALKPWMPUPVNWLZDARPTNCWDPZHPLHKHNMFSXSKGHTKRCWEBVTSJAKKAGXJQNALHPVWECFKKYAKATUJPMQHYDYVKHNDFIQKLBNPQJPKAZI" +
+                "RHLVOPZYAGMLCPGKCGQBMHZTOIFRQPBPDITQAMIWEBFHQRKZOQHPOPCCYJYFKIMBSFZGLYMECXTIKWIHDWMPCXWDTBBCTCSWNMXHVWGWWKPHPJLSNASLPZYJXRSUVJZMIR" +
+                "CFUYNGPRJCWCEJSFDMYHOQYVYFECWUFJXQQRSOQQYQBHCPXDEHAJDKUAPPYTOHQTFTIJVXYSWYQXCTVLUVQZKBWLQNGGFRWEYNHDPWNKHYRLBLBDUWDRVHMSWEIHMBHQQE" +
+                "GKMYRSTZSZINLLMOYAVMPSCAQKBZJIHRHGMTOSAIPJWJQVMKDNSNCQUSLHVRSELUYIJSKTEJIYWFCIUOJACSZQNJVSWYKPLYFRKZFESBFXUCQXAVSLTJNPIVINPRMEUOHV" +
+                "UEUEWJOSQIIRDQBIRWOSPXOXTRNYCTPZOECZODXYMGBOVEGUQBWTNVGTSEATTABPRZWCQQMRUDUOHWDGURTVGVHISMSQSKZLRESGBTYLYXTGSWYGPOXJQEV";
+
+        System.out.println(plain.length());
+        m4.setIndicators("NAZIS");
+        assert (m4.encipher(plain).equals(encrypt));
+        m4.setIndicators("NAZIS");
+        assert (m4.encipher(encrypt).equals(plain));
+
+        System.out.println("M4 tests passed. You are Awesome!");
+    }
+
+}
